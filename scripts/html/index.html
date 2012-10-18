@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Hi-Cpipe Results</title>
+<meta name="keywords" content="Hi-Cpipe, HiC, CRG" />
+<link type="text/css" rel="stylesheet" media="all" href="css/main.css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/colorbox/jquery.colorbox-min.js"></script>
+<script type="text/javascript" src="js/main.js?ff"></script>
+</head>
+<body>
+    <div id="header">
+        <div class="title">Hi-Cpipe</div>
+        <div class="logo"><a href="http://www.crg.eu"><img src="css/CRG-logo.png" alt="CRG" title="CRG"  /></a></div>
+    </div>
+<div id="container">
+<div id="sidebar">
+<form id="chromosomes" action="#" method="post">
+    <select name="samples" id="samples">
+        <option selected="selected" value="">Select a sample</option>
+    </select> <a href="#" class="help"><img src="css/help.png" alt="Help" title="Help" /><span>Select one of your available samples</span></a>
+    <select name="sets" id="sets">
+        <option selected="selected" value="">Select an experiment</option>
+    </select> <a href="#" class="help"><img src="css/help.png" alt="Help" title="Help" /><span>Select one of the bin resolutions associated to the selected sample</span></a>
+    <br /><br />
+    Chromosome1:
+    <select name="chrom1" id="chrom1">
+        <option value="all">all</option>
+        <option selected="selected" value="">Select a chromosome</option>
+    </select>
+    Chromosome2:
+    <select name="chrom2" id="chrom2">
+        <option value="all">all</option>
+        <option selected="selected" value="">Select a chromosome</option>
+    </select>    <a href="#" class="help"><img src="css/help.png" alt="Help" title="Help" /><span>Choose the chromosome pair to show the interaction experiments</span></a>
+    </form>
+</div>
+
+<div id="main">
+    <div id="experiment">
+        <p class="clearit clearall"><a href="#" onclick="clearelementall('output', 'outputlittle')">Clear All</a></p>
+        <ul id="listexps" class="hidden">
+            <li class="hidden auto0"><a href='#' class='exp'>correlation</a></li>
+            <li class="hidden auto0"><a href='#' class='exp'>coverage-correction</a></li>
+            <li class="hidden auto1"><a href='#' class='exp'>expected</a></li>
+            <li class="hidden auto0"><a href='#' class='exp'>observed</a></li>
+            <li class="hidden auto1"><a href='#' class='exp'>observed.vs.expected</a></li>
+        </ul>
+    </div>
+        
+    <div id="result"></div>
+    
+</div>
+</div>
+    
+
+<div id='footer'><p class="title">Hi-Cpipe: a pipeline for high-throughput chromosome capture</p><p class="authors">Giancarlo Castellano, François Le Dily, Antoni Hermoso Pulido, Miguel Beato and Guglielmo Roma</p></div>
+</body>
+</html>

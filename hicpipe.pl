@@ -110,7 +110,10 @@ my $bedtoolsdir = $conf{'bedtoolsdir'};
 if ($utils) {
 	$chrsizefile = $path."/utils/$utils/chromsizes.$utils";
 	$genome = $path."/utils/$utils/$utils";
-	$restrictiondir = $path."/utils/$utils/";
+	if (!$restrictiondir) {
+		#If restrictiondir is not defined, let's assume it's here
+		$restrictiondir = $path."/utils/$utils/";
+	}
 }
 
 die "You must specify a file describing the experimental design \n Use -h for help" if !$designfile;

@@ -8,6 +8,9 @@ hg19/hg19.4.ebwt
 hg19/hg19.rev.1.ebwt
 hg19/hg19.rev.2.ebwt
 
+We provide a convenience hg19 chromsizes file you can place in:
+hg19/chromsizes.hg19
+
 If rd (restrictiondir) is not set, you can place necessary restriction enzyme processed index files there as well. 
 For example, for hindIII processing:
 

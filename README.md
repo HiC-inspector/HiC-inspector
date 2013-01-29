@@ -97,9 +97,7 @@ We provide an example result at: [http://biocore.crg.cat/software/HiC-
 inspector/](http://biocore.crg.cat/software/HiC-inspector/)
 
 This uses [hg19](http://hgdownload.cse.ucsc.edu/downloads.html) processed with
-[hindIII](http://en.wikipedia.org/wiki/HindIII) and a couple of reads from [SRR027956](htt
-p://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?cmd=viewer&m=data&s=viewer&run=S
-RR027956).
+[hindIII](http://en.wikipedia.org/wiki/HindIII) and a couple of reads from [SRR027956](http://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?cmd=viewer&m=data&s=viewer&run=SRR027956).
 
 ### Design file
 

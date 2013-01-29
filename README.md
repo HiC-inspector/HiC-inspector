@@ -52,7 +52,7 @@ identifying DNA interacting sites.
 
   * awk, zcat, GNUTools (they are commonly in most Linux distributions)
   * perl. Required modules are normally present in most Linux distributions. Alternately, used modules are: ''Getopt::Long'', ''Data::Dumper'', ''Pod::Usage'', ''POSIX 'strftime''', ''Benchmark''.
-  * R http://www.r-project.org (tested in 2.13) Install also the following R libraries (ref: [http://support.hmdc.harvard.edu/book/export/html/696](listing and install R libraries) )
+  * R http://www.r-project.org (tested in 2.13) Install also the following R libraries (ref: [listing and install R libraries](http://support.hmdc.harvard.edu/book/export/html/696) )
     * gplots http://cran.r-project.org/web/packages/gplots/index.html
     * RColorBrewer http://cran.r-project.org/web/packages/RColorBrewer/index.html
     * MCMCpack http://mcmcpack.wustl.edu/installation.html 
@@ -96,10 +96,10 @@ Options:
 We provide an example result at: [http://biocore.crg.cat/software/HiC-
 inspector/](http://biocore.crg.cat/software/HiC-inspector/)
 
-This uses [http://hgdownload.cse.ucsc.edu/downloads.html](hg19) processed with
-[http://en.wikipedia.org/wiki/HindIII](hindIII) and a couple of reads from [htt
+This uses [hg19](http://hgdownload.cse.ucsc.edu/downloads.html) processed with
+[hindIII](http://en.wikipedia.org/wiki/HindIII) and a couple of reads from [SRR027956](htt
 p://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?cmd=viewer&m=data&s=viewer&run=S
-RR027956](SRR027956).
+RR027956).
 
 ### Design file
 
@@ -108,7 +108,7 @@ SRR027956.lite.sra_1.fastq SRR027956.lite.sra_2.fastq hindIII.hg19.bed</pre>
 
 ### Chromosome sizes file
 
-We used [http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/fetchChromSizes](fetchChromSizes) script to create the chrom.sizes file for the UCSC database
+We used [fetchChromSizes](http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/fetchChromSizes) script to create the chrom.sizes file for the UCSC database
 you are working with (e.g. hg19)
 
 ### Executed command

@@ -52,13 +52,13 @@ identifying DNA interacting sites.
 
   * awk, zcat, GNUTools (they are commonly in most Linux distributions)
   * perl. Required modules are normally present in most Linux distributions. Alternately, used modules are: ''Getopt::Long'', ''Data::Dumper'', ''Pod::Usage'', ''POSIX 'strftime''', ''Benchmark''.
-  * R [http://www.r-project.org](http://www.r-project.org) (tested in 2.13) Install also the following R libraries (ref: [http://support.hmdc.harvard.edu/book/export/html/696 listing and install R libraries])
-    * [http://cran.r-project.org/web/packages/gplots/index.html gplots]
-    * [http://cran.r-project.org/web/packages/RColorBrewer/index.html RColorBrewer]
-    * [http://mcmcpack.wustl.edu/installation.html MCMCpack]
-    * [http://www.bioconductor.org/packages/2.3/bioc/html/Heatplus.html Heatplus]
-  * [http://bowtie-bio.sourceforge.net Bowtie] (tested in 0.12.7)
-  * [http://code.google.com/p/bedtools Bedtools] (tested in 2.10.1)
+  * R http://www.r-project.org (tested in 2.13) Install also the following R libraries (ref: [http://support.hmdc.harvard.edu/book/export/html/696](listing and install R libraries) )
+    * gplots http://cran.r-project.org/web/packages/gplots/index.html
+    * RColorBrewer http://cran.r-project.org/web/packages/RColorBrewer/index.html
+    * MCMCpack http://mcmcpack.wustl.edu/installation.html 
+    * Heatplus http://www.bioconductor.org/packages/2.3/bioc/html/Heatplus.html
+  * Bowtie http://bowtie-bio.sourceforge.net (tested in 0.12.7)
+  * Bedtools http://code.google.com/p/bedtools (tested in 2.10.1)
 
 ### Install
 
@@ -96,10 +96,10 @@ Options:
 We provide an example result at: [http://biocore.crg.cat/software/HiC-
 inspector/](http://biocore.crg.cat/software/HiC-inspector/)
 
-This uses [http://hgdownload.cse.ucsc.edu/downloads.html hg19] processed with
-[http://en.wikipedia.org/wiki/HindIII hindIII] and a couple of reads from [htt
+This uses [http://hgdownload.cse.ucsc.edu/downloads.html](hg19) processed with
+[http://en.wikipedia.org/wiki/HindIII](hindIII) and a couple of reads from [htt
 p://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?cmd=viewer&m=data&s=viewer&run=S
-RR027956 SRR027956].
+RR027956](SRR027956).
 
 ### Design file
 
@@ -108,8 +108,7 @@ SRR027956.lite.sra_1.fastq SRR027956.lite.sra_2.fastq hindIII.hg19.bed</pre>
 
 ### Chromosome sizes file
 
-We used [http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/fetchChromSizes
-fetchChromSizes] script to create the chrom.sizes file for the UCSC database
+We used [http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/fetchChromSizes](fetchChromSizes) script to create the chrom.sizes file for the UCSC database
 you are working with (e.g. hg19)
 
 ### Executed command

@@ -2,17 +2,17 @@
 
 =head1 NAME
 
-  hicpipe.pl
+  hic-inspector.pl
 
 =head1 SYNOPSIS
 	
-  perl hicpipe.pl [-n missmatches] [-m multiplemappings] [-cf chrsizefile] [-df designfile] [-sf selectfile] [-dd datadir] [-rd restrictiondir] [-dfo dataformat] [-pd projectdir] [-g genome] [-fs fragmentsize] [-b bin] [-s step] [-t test] [-u utils] [-h help]
+  perl hic-inspector.pl [-n missmatches] [-m multiplemappings] [-cf chrsizefile] [-df designfile] [-sf selectfile] [-dd datadir] [-rd restrictiondir] [-dfo dataformat] [-pd projectdir] [-g genome] [-fs fragmentsize] [-b bin] [-s step] [-t test] [-u utils] [-h help]
 
 =head1 DESCRIPTION
 
 Typical usage is as follows:
 
-  % perl hicpipe.pl -df design.txt -dd /data/qseq -pd project -utils hg19
+  % perl hic-inspector.pl -df design.txt -dd /data/qseq -pd project -utils hg19
 
 =head2 Options
 
@@ -72,7 +72,7 @@ use Pod::Usage;
 use POSIX 'strftime';
 use Benchmark;
 
-my $USAGE = "perl hicpipe.pl [-n missmatches] [-m multiplemappings] [-cf chrsizefile] [-df designfile] [-sf selectfile] [-dd datadir] [-rd restrictiondir] [-dfo dataformat] [-pd projectdir] [-g genome] [-fs fragmentsize] [-b bin] [-s step] [-t test] [-u utils] [-h help]\n";
+my $USAGE = "perl hic-inspector.pl [-n missmatches] [-m multiplemappings] [-cf chrsizefile] [-df designfile] [-sf selectfile] [-dd datadir] [-rd restrictiondir] [-dfo dataformat] [-pd projectdir] [-g genome] [-fs fragmentsize] [-b bin] [-s step] [-t test] [-u utils] [-h help]\n";
 my ($missmatches, $multiplemappings, $chrsizefile, $designfile, $selectfile, $restrictiondir, $datadir, $dataformat, $projectdir, $genome, $fragmentsize, $bin, $step, $test, $utils, $show_help);
 
 &GetOptions(
@@ -178,10 +178,10 @@ my $pid = $$;
 my $t0 = Benchmark->new();
 
 # Send email, if email address is provided
-my $subject = "HIC PIPELINE running with process-id $pid [".strftime('%m-%d-%Y_%H:%M:%S', localtime)."]"; 
+my $subject = "HIC-INSPECTOR running with process-id $pid [".strftime('%m-%d-%Y_%H:%M:%S', localtime)."]"; 
 $subject .= "- TEST MODE " if $test;
 print STDOUT "# $subject \n\n";
-&sendEmail ($email, 'hicpipeline', $subject, '') if ($email);
+&sendEmail ($email, 'hic-inspector', $subject, '') if ($email);
 
 # Preparing directories for storing results
 print STDOUT "# Preparing directories for storing results \n\n";
@@ -461,10 +461,10 @@ my $t1 = Benchmark->new;
 my $td = timediff ($t1, $t0);
 
 ## Send mail, if email address is provided
-my $subject2 = "HIC PIPELINE with process-id $pid completed after ".timestr($td)." [".strftime('%m-%d-%Y_%H:%M:%S', localtime)."]";
+my $subject2 = "HIC-INSPECTOR with process-id $pid completed after ".timestr($td)." [".strftime('%m-%d-%Y_%H:%M:%S', localtime)."]";
 $subject2 .= "- TEST MODE " if $test;
 print STDOUT "# $subject2 \n\n";
-&sendEmail ($email, 'hicpipeline', $subject2, '') if ($email);
+&sendEmail ($email, 'hic-inspector', $subject2, '') if ($email);
 
 ###################
 ### subroutines ###

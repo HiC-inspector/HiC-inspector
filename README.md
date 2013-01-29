@@ -82,7 +82,7 @@ Please check the file 'INSTALL' in the distribution.
 ### Usage
 
 <pre style="white-space: pre-wrap; text-align:justify;"> Usage: perl
-hicpipe.pl [-n missmatches] [-m multiplemappings] [-cf chrsizefile] [-df
+hic-inspector.pl [-n missmatches] [-m multiplemappings] [-cf chrsizefile] [-df
 designfile] [-sf selectfile] [-dd datadir] [-rd restrictiondir] [-dfo
 dataformat] [-pd projectdir] [-g genome] [-fs fragmentsize] [-b bin] [-s step]
 [-t test] [-u utils] [-h help]
@@ -114,6 +114,6 @@ you are working with (e.g. hg19)
 
 ### Executed command
 
-<pre>perl mypath/hicpipe.pl -df design.GM.hindIII.hg19 -dd inputreadsdir -pd
+<pre>perl mypath/hic-inspector.pl -df design.GM.hindIII.hg19 -dd inputreadsdir -pd
 output/myproject.hindIII.hg19 -dfo fastq -u hg19 -b 1000000,10000000</pre>
 

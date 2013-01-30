@@ -51,7 +51,7 @@ identifying DNA interacting sites.
 ### Requirements
 
   * awk, zcat, GNUTools (they are commonly in most Linux distributions)
-  * perl. Required modules are normally present in most Linux distributions. Alternately, used modules are: ''Getopt::Long'', ''Data::Dumper'', ''Pod::Usage'', ''POSIX 'strftime''', ''Benchmark''.
+  * perl. Required modules are normally present in most Linux distributions. Alternately, used modules are: ''Getopt::Long'', ''Data::Dumper'', ''Pod::Usage'', ''POSIX 'strftime''', ''Benchmark'' and ''Parallel::ForkManager''.
   * R http://www.r-project.org (tested in 2.13) Install also the following R libraries (ref: [listing and install R libraries](http://support.hmdc.harvard.edu/book/export/html/696) )
     * gplots http://cran.r-project.org/web/packages/gplots/index.html
     * RColorBrewer http://cran.r-project.org/web/packages/RColorBrewer/index.html
@@ -95,7 +95,7 @@ Usage: perl
 hic-inspector.pl [-n missmatches] [-m multiplemappings] [-cf chrsizefile] [-df
 designfile] [-sf selectfile] [-dd datadir] [-rd restrictiondir] [-dfo
 dataformat] [-pd projectdir] [-g genome] [-fs fragmentsize] [-b bin] [-s step]
-[-t test] [-u utils] [-h help]
+[-t test] [-u utils] [-pr processors] [-h help]
 
 Options:
 
@@ -122,6 +122,7 @@ Available steps:
 	STEP 9: generating contact matrix; STEP 10: analyzing contact matrix; 
 -t, -test Test mode. Prints out commands without executing them 
 -u, -utils Specify the genome release to be used among those already provided by HiC-inspector (e.g. hg19) 
+-pr,   -processors=<int>               Number of processors to be used -for allowing parallelization (default: 2)
 -help This documentation. 
 </pre>
 

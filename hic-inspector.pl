@@ -6,7 +6,7 @@
 
 =head1 SYNOPSIS
 	
-  perl hic-inspector.pl [-n missmatches] [-m multiplemappings] [-cf chrsizefile] [-df designfile] [-sf selectfile] [-dd datadir] [-rd restrictiondir] [-dfo dataformat] [-pd projectdir] [-g genome] [-fs fragmentsize] [-b bin] [-s step] [-t test] [-u utils] [-h help]
+  perl hic-inspector.pl [-n missmatches] [-m multiplemappings] [-cf chrsizefile] [-df designfile] [-sf selectfile] [-dd datadir] [-rd restrictiondir] [-dfo dataformat] [-pd projectdir] [-g genome] [-fs fragmentsize] [-b bin] [-s step] [-t test] [-u utils] [-pr processors] [-h help]
 
 =head1 DESCRIPTION
 
@@ -44,6 +44,7 @@ The following options are accepted:
 									 STEP 10: analyzing contact matrix.
  -t, 	-test         			Test mode. Prints out commands without executing them
  -u, 	-utils         			Specify the genome release to be used among those already provided by HiC-pipe (e.g. hg19)
+ -pr,	-processors=<int>		Number of processors to be used -for allowing parallelization (default: 2)
  -help              			This documentation.
 
 
@@ -71,9 +72,10 @@ use Data::Dumper;
 use Pod::Usage;
 use POSIX 'strftime';
 use Benchmark;
+use Parallel::ForkManager;
 
-my $USAGE = "perl hic-inspector.pl [-n missmatches] [-m multiplemappings] [-cf chrsizefile] [-df designfile] [-sf selectfile] [-dd datadir] [-rd restrictiondir] [-dfo dataformat] [-pd projectdir] [-g genome] [-fs fragmentsize] [-b bin] [-s step] [-t test] [-u utils] [-h help]\n";
-my ($missmatches, $multiplemappings, $chrsizefile, $designfile, $selectfile, $restrictiondir, $datadir, $dataformat, $projectdir, $genome, $fragmentsize, $bin, $step, $test, $utils, $show_help);
+my $USAGE = "perl hic-inspector.pl [-n missmatches] [-m multiplemappings] [-cf chrsizefile] [-df designfile] [-sf selectfile] [-dd datadir] [-rd restrictiondir] [-dfo dataformat] [-pd projectdir] [-g genome] [-fs fragmentsize] [-b bin] [-s step] [-t test] [-u utils] [-pr processors] [-h help]\n";
+my ($missmatches, $multiplemappings, $chrsizefile, $designfile, $selectfile, $restrictiondir, $datadir, $dataformat, $projectdir, $genome, $fragmentsize, $bin, $step, $test, $procs, $utils, $show_help);
 
 &GetOptions(
 			'missmatches|n=s'				=> \$missmatches,
@@ -90,6 +92,7 @@ my ($missmatches, $multiplemappings, $chrsizefile, $designfile, $selectfile, $re
 			'bin|b=s'						=> \$bin,
 			'step|s=s'						=> \$step,
 			'utils|u=s'						=> \$utils,
+			'processors|pr=s'					=> \$procs,
 			'test|t'						=> \$test,
 			'help|h'        				=> \$show_help
 	   )
@@ -144,6 +147,8 @@ unless ($dataformat eq 'bed') {
 # Some default parameters
 $fragmentsize = 500 unless $fragmentsize;
 $bin = 1000000 unless $bin;
+$procs = 2 unless $procs; # 2 parallel processes
+
 
 # Create an array with all bins
 my @bins = split(/,/, $bin);
@@ -252,8 +257,14 @@ foreach my $sample (keys %samples) {
 		&createdirs($fastqdir, $mapdir, $beddir);
 	}
 	
+	# Max num processes
+	my $pm = new Parallel::ForkManager($procs); 
+	
 	# Process each read-file separately
 	foreach my $file (keys %{$samples{$sample}}) {
+		
+		$pm->start and next; # do the fork
+		
 		my $restrictionfile = $samples{$sample}{$file}{'enzyme'};
 		print STDOUT "# Processing file: $file \n# Restriction file: $restrictionfile \n\n";
 		
@@ -344,7 +355,11 @@ foreach my $sample (keys %samples) {
 		}
 		
 		print STDOUT "###\n\n";
+		
+		$pm->finish; # do the exit in the child process
 	}
+	
+	$pm->wait_all_children;
 	
 	# Filter mate reads for regions of interest
 	if (($validsteps{6} || $allsteps_valid) && $selectfile) {
@@ -419,7 +434,13 @@ foreach my $sample (keys %samples) {
 		}
 		
 		if ($validsteps{9} || $validsteps{10} || $allsteps_valid) {
+
+			my $pmb = new Parallel::ForkManager($procs);
+
 			foreach my $bin (@bins) {
+
+				$pmb->start and next; # do the fork
+
 				if ($validsteps{9} || $allsteps_valid) {
 					my $msg1 = "# STEP 9 => generating contact matrix:";
 					my $cmd1 = "perl $scriptsdir/perl/generate_contact_matrix.pl -i $interactionsdir/$interactions_file.txt -cf $chrsizefile -o $matrixdir/$matrix_file.$bin.txt -b $bin 2>&1";
@@ -435,7 +456,12 @@ foreach my $sample (keys %samples) {
 				} else {
 					print STDOUT "# Skipping STEP 10 => NOT analyzing contact matrix.\n\n";
 				}
+
+				$pmb->finish; # do the exit in the child process
 			}
+
+			$pmb->wait_all_children;
+
 		}
 		
 		print STDOUT "\n###\n\n";

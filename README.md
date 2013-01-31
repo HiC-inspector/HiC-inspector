@@ -105,8 +105,10 @@ Options:
 -df, -designfile=<file> Input file describing the experimental design (tab separated text: 1st-column is sample_name, 2nd-column is read1_file, 3rd-column is read2_file, 4th-column is restriction_enzyme_file) 
 -dd, -datadir=<dir> Directory containing data to be analysed. These can be raw reads in qseq or fastq format(compressed or not), or mapped reads in BED format 
 -rd, -restrictiondir=<dir> Directory containing restriction enzyme sites to be considered in the analysis. Should be provided in BED format 
--dfo, -dataformat=<dir> Format of sequencing reads. Valid options are: qseq (default), fastq, and bed -g, -genome=<file> Indexed genome file for the reads alignment 
--sf, -selectfile=<file> Input file with user-defined genomic regions of interest (BED format) -fs, -fragment_size=<num> Maximum expected fragment size 
+-dfo, -dataformat=<dir> Format of sequencing reads. Valid options are: qseq (default), fastq, and bed 
+-g, -genome=<file> Indexed genome file for the reads alignment 
+-sf, -selectfile=<file> Input file with user-defined genomic regions of interest (BED format) 
+-fs, -fragment_size=<num> Maximum expected fragment size 
 -cf, -chrsizefile=<file> Input file with chromosome sizes (tab separated text: 1st-column is chr, 2nd-column is size) 
 -b, -bin=<list> Genomic windows, or "bins", to count for chromatin interactions. Several bins can be provided as a comma separated string (e.g. -b 100000,1000000) 
 -s, -step=<list> Analysis steps to be performed. More steps can be provided either as comma-separated list [e.g. 1,2,3] or as dash-separated range [e.g. 1-3] 

@@ -284,7 +284,7 @@ while (x < data_matrix_chr_dim) {
 
 
 
-z<-y/c(data_matrix_chr_dim:1)
+z<-y/c(1 : data_matrix_chr_dim)
 
 
 

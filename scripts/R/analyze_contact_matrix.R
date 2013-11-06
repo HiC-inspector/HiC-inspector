@@ -12,6 +12,8 @@ orgPal<-brewer.pal(9,"YlGnBu")
 
 args = commandArgs(TRUE)
 
+library(HiTC)
+library(gtools)
 
 
 
@@ -86,7 +88,7 @@ distances<-abs(as.matrix(read.table(paste("matrices",filedistances,sep="/"))))
 
 setwd("statistics")
 
-read.stat<-list.files()
+read.stat<-list.files()[grep("map",list.files())]
 
 read1<-read.table(read.stat[1],comment.char = "", fill=TRUE)
 
@@ -652,6 +654,97 @@ setwd('../')
 
 
 
+######################
+##################   HiTC   ######################
+######################
 
 
+
+dir.create("HiTC")
+
+setwd("HiTC")
+
+t<-data_matrix[mixedsort(rownames(data_matrix)),mixedsort(colnames(data_matrix))]
+
+bin	<-	as.numeric(bin)
+chrs	<-	gsub("_.*","",colnames(t))
+chr<-		unique(chrs)
+p=1
+c=1
+ss<-c()
+cc<-c()
+for (i in 1:length(chr))
+{
+for (z in i:length(chr))
+{
+tt	<-	as.matrix(t[which(chrs == chr[i]),which(chrs == chr[z])])
+
+forward <- GRanges(seqnames=gsub("_.*","",rownames(tt)), 
+                   ranges = IRanges(start=seq(1,(dim(tt)[1]*bin),bin), 
+                   end=seq(bin,(dim(tt)[1]*bin),bin), 
+                   names=rownames(tt)))
+
+reverse <- GRanges(seqnames=gsub("_.*","",colnames(tt)), 
+                   ranges = IRanges(start=seq(1,(dim(tt)[2]*bin),bin), 
+                   end=seq(bin,(dim(tt)[2]*bin),bin), 
+                   names=colnames(tt)))
+
+
+zz <- HTCexp(tt, xgi=forward, ygi=reverse)
+
+ss[p]	<-list(zz)
+
+if (chr[i] == chr[z])
+{
+cc[c]	<-list(zz)
+c=c+1
+}
+p=p+1
+}
+}
+tt	<- HTClist(ss)
+cis	<- HTClist(cc)
+
+
+###################################################
+### code Maps
+###################################################
+
+png(file="qcc.png", res=300, units="in", width=5, height=5)
+CQC(tt)
+graphics.off()
+
+png(file="Genome.mapC.png", res=300, units="in", width=8, height=8)
+mapC(tt)
+graphics.off()
+
+
+dir.create("mapC")
+setwd("mapC")
+for (i in 1:length(tt))
+{
+png(file=paste(names(tt[i]),"mapC.png",sep="-"), res=300, units="in", width=8, height=8)
+try(mapC(tt[i]))
+graphics.off()
+}
+
+
+
+###################################################
+### code Normalization
+###################################################
+dir.create("../Norm")
+setwd("../Norm")
+
+for (i in 1:length(cc))
+{
+
+ccnorm <- normPerExpected(cc[[i]])
+png(file=paste(chr[i],"norm.png",sep="-"), res=300, units="in", width=8, height=8)
+try(mapC(ccnorm, log.data=TRUE))
+graphics.off()
+}
+
+
+setwd('../')
 

@@ -1,4 +1,6 @@
-#!/usr/bin/perl -w
+#!/usr/bin/env perl
+
+use warnings;
 
 =head1 NAME
 
@@ -451,7 +453,7 @@ foreach my $sample (keys %samples) {
 				
 				if ($validsteps{10} || $allsteps_valid) {
 					my $msg2 = "# STEP 10 => analyzing contact matrix:";
-					my $cmd2 = $rdir."Rscript $scriptsdir/R/analyze_contact_matrix.R $matrix_file.$bin.txt $bin $interactions_file.distances.txt $matrix_file.$bin.txt.columns.txt $matrix_file.$bin.txt.cvg $resultsdir > /home/gcastellano/out 2>/home/gcastellano/err";
+					my $cmd2 = $rdir."Rscript $scriptsdir/R/analyze_contact_matrix.R $matrix_file.$bin.txt $bin $interactions_file.distances.txt $matrix_file.$bin.txt.columns.txt $matrix_file.$bin.txt.cvg $resultsdir 2>&1 >/dev/null";
 					&executeCmd ($cmd2, $msg2, $debug, $test);
 				} else {
 					print STDOUT "# Skipping STEP 10 => NOT analyzing contact matrix.\n\n";

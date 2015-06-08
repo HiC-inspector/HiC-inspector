@@ -141,9 +141,14 @@ This uses [hg19](http://hgdownload.cse.ucsc.edu/downloads.html) processed with
 Named <code>design.GM.hindIII.hg19</code>
 <pre>GM.hindIII SRR027956.lite.sra_1.fastq SRR027956.lite.sra_2.fastq hindIII.hg19.bed</pre>
 
-### Chromosome sizes file
+### Chromosome files
+
+In utils directory you need to put a:
+* chromosome sizes file
+* a directory with pre-built Bowtie genome indexes
 
 We used [fetchChromSizes](http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/fetchChromSizes) script to create the chrom.sizes file for the UCSC database you are working with (e.g. hg19)
+
 
 ### Executed command
 

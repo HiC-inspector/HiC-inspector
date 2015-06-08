@@ -52,11 +52,12 @@ identifying DNA interacting sites.
 
   * awk, zcat, GNUTools (they are commonly in most Linux distributions)
   * perl. Required modules are normally present in most Linux distributions. Alternately, used modules are: ''Getopt::Long'', ''Data::Dumper'', ''Pod::Usage'', ''POSIX 'strftime''', ''Benchmark'' and ''Parallel::ForkManager''.
-  * R http://www.r-project.org (tested in 2.13) Install also the following R libraries (ref: [listing and install R libraries](http://support.hmdc.harvard.edu/book/export/html/696) )
+  * R http://www.r-project.org (tested in 2.13 and 3.2) Install also the following R libraries:
     * gplots http://cran.r-project.org/web/packages/gplots/index.html
     * RColorBrewer http://cran.r-project.org/web/packages/RColorBrewer/index.html
     * MCMCpack http://mcmcpack.wustl.edu/installation.html 
-    * Heatplus http://www.bioconductor.org/packages/2.3/bioc/html/Heatplus.html
+    * Heatplus http://www.bioconductor.org/packages/release/bioc/html/Heatplus.html
+    * HiTC http://www.bioconductor.org/packages/release/bioc/html/HiTC.html
   * Bowtie http://bowtie-bio.sourceforge.net (tested in 0.12.7)
   * Bedtools http://code.google.com/p/bedtools (tested in 2.10.1)
 

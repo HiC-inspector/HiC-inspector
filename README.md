@@ -137,6 +137,8 @@ inspector/](http://biocore.crg.cat/software/HiC-inspector/)
 This uses [hg19](http://hgdownload.cse.ucsc.edu/downloads.html) processed with
 [hindIII](http://en.wikipedia.org/wiki/HindIII) and a couple of reads from [SRR027956](http://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?cmd=viewer&m=data&s=viewer&run=SRR027956).
 
+* For convenience, we provide hg19 and hindIII processed files  [here](http://biocore.crg.cat/software/HiC-inspector/extra/hg19.tar.bz2) (md5sum: e3509b155ded6e3b5eb98e996752ba05).
+
 ### Design file
 
 Named <code>design.GM.hindIII.hg19</code>

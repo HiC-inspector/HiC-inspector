@@ -16,7 +16,7 @@ different platforms.
 
 ## Authors
 
-HiC-inspector is written by Giancarlo Castellano, Fran?ois Le Dily, Antoni
+HiC-inspector is written by Giancarlo Castellano, François Le Dily, Antoni
 Hermoso Pulido and Guglielmo Roma from Bioinformatics Core and Miguel Beato's
 Lab @ CRG.
 
@@ -30,6 +30,10 @@ You can grab the last code from:
 
 [https://github.com/HiC-inspector/HiC-inspector](https://github.com/HiC-
 inspector/HiC-inspector)
+
+## Citation
+
+Castellano, G., Le Dily, F., Hermoso Pulido, A., Beato, M., & Roma, G. (2015). *Hi-Cpipe: a pipeline for high-throughput chromosome capture*.	 bioRxiv. Cold Spring Harbor Labs Journals. doi:[10.1101/020636](http://dx.doi.org/10.1101/020636 )
 
 ## Contact
 

@@ -170,7 +170,7 @@ The easiest way to test this tool is by using Docker.
   * <code>mkdir -p /path/to/my/input</code>
   * <code>mkdir -p /path/to/my/output</code>
   * <code>mkdir -p /path/to/my/utils</code>
-* Download SRR027956 SRA example in input (you can also use Docker)
+* Download SRR027956 SRA example in input (you can also use a pre-existing Docker image)
   * <code>cd /path/to/my/input; docker run --rm -v "$(pwd)":/data -w /data inutano/sra-toolkit fasterq-dump SRR027956</code>
 * Prepare genome indices, chromosome sizes, etc. in utils directory. This must match assembly code used. We will use hg19 file provided above.
   * <code>cd /path/to/my/utils; mkdir hg19; cd hg19; wget http://biocore.crg.cat/software/HiC-inspector/extra/hg19.tar.bz2; tar jxf hg19.tar.bz2</code>
@@ -181,3 +181,7 @@ The easiest way to test this tool is by using Docker.
   * Then we execute the command: <code>docker exec myhic perl hic-inspector.pl -df /input/design.GM.hindIII.hg19 -dd /input -pd /output/hindIII.hg19 -dfo fastq -u hg19 -b 1000000,10000000</code>
 * Once you don't need to run it for a while, you can stop the container:
   * <code>docker stop myhic</code>
+  
+* Note: fetchChromSizes is also provided in this image for convenience.
+  * <code>docker exec myhic fetchChromSizes hg38 > /utils/hg38/chromsizes.hg38</code>
+  * You may want to edit resulting file (e. g. removing what is not a chromosome)

@@ -37,9 +37,9 @@ Castellano, G., Le Dily, F., Hermoso Pulido, A., Beato, M., & Roma, G. (2015). *
 ## Contact
 
 If you have any comments, suggestions, questions, bug reports, etc., you can
-submit an issue in Github or feel free to contact: Guglielmo.Roma@gmail.com,
-Giancarlo.Castellano@gmail.com or toni.hermoso@crg.eu PLEASE attach your
-command line and log messages if possible.
+submit an issue in Github or feel free to contact: toni.hermoso@crg.eu
+
+PLEASE attach your command line and log messages if possible.
 
 ## README
 
@@ -55,14 +55,14 @@ identifying DNA interacting sites.
 
   * awk, zcat, GNUTools (they are commonly in most Linux distributions)
   * perl. Required modules are normally present in most Linux distributions. Alternately, used modules are: ''Getopt::Long'', ''Data::Dumper'', ''Pod::Usage'', ''POSIX 'strftime''', ''Benchmark'' and ''Parallel::ForkManager''.
-  * R http://www.r-project.org (tested in 2.13 and 3.2) Install also the following R libraries:
+  * R http://www.r-project.org (originally tested in 2.13 and 3.2) Install also the following R libraries:
     * gplots http://cran.r-project.org/web/packages/gplots/index.html
     * RColorBrewer http://cran.r-project.org/web/packages/RColorBrewer/index.html
     * MCMCpack http://mcmcpack.wustl.edu/installation.html 
     * Heatplus http://www.bioconductor.org/packages/release/bioc/html/Heatplus.html
     * HiTC http://www.bioconductor.org/packages/release/bioc/html/HiTC.html
-  * Bowtie http://bowtie-bio.sourceforge.net (tested in 0.12.7)
-  * Bedtools http://code.google.com/p/bedtools (tested in 2.10.1)
+  * Bowtie http://bowtie-bio.sourceforge.net (originally tested in 0.12.7)
+  * Bedtools http://code.google.com/p/bedtools (originally tested in 2.10.1)
 
 ### Install
 
@@ -78,8 +78,6 @@ BEGIN {
     package main;
 
     %conf = (
-        # Email address
-                'email'                 => 'myemail@example.com',
         # Path to local tools
                 'rdir'                  => "/soft/general/R-2.13/bin/",
                 'bowtiedir'     => "/data/projects/hic/bin/",
@@ -152,19 +150,21 @@ Take care to keep tabs instead of simple spaces.
 ### Chromosome files
 
 In utils directory you need to put a:
-* chromosome sizes file
+* chromosome sizes file ( e.g. <code>chromsizes.hg19</code> )
 * a directory with pre-built Bowtie genome indexes
 
 We used [fetchChromSizes](http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/fetchChromSizes) script to create the chrom.sizes file for the UCSC database you are working with (e.g. hg19)
 
 
-### Executed command
+### Example execution command
 
-<pre>perl mypath/hic-inspector.pl -df design.GM.hindIII.hg19 -dd inputreadsdir -pd output/myproject.hindIII.hg19 -dfo fastq -u hg19 -b 1000000,10000000</pre>
+This is a command with the minimal number of parameters:
+
+<pre>perl hic-inspector.pl -df design.GM.hindIII.hg19 -dd inputreadsdir -pd output/myproject.hindIII.hg19 -dfo fastq -u hg19 -b 1000000,10000000</pre>
 
 ## Docker
 
-The easiest way to test this tool is by using Docker.
+The easiest way to test and use this tool is by using Docker.
 
 * Create your own custom directories: input, output and utils 
   * <code>mkdir -p /path/to/my/input</code>

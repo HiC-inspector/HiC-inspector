@@ -63,3 +63,6 @@ RUN ln -s /soft/hic-inspector.pl /usr/local/bin/hic-inspector.pl
 RUN apt-get clean
 RUN set -x; rm -rf /var/lib/apt/lists/*
 
+# Let's place workdir in /soft
+WORKDIR /soft
+

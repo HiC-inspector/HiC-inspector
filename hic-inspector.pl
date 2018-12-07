@@ -4,7 +4,7 @@ use warnings;
 
 =head1 NAME
 
-  hic-inspector.pl
+  hic-inspector.pl v1.0
 
 =head1 SYNOPSIS
 	

@@ -7,7 +7,15 @@ MAINTAINER Toni Hermoso Pulido <toni.hermoso@crg.eu>
 RUN cpanm Getopt::Long Pod::Usage Data::Dumper POSIX Benchmark Parallel::ForkManager
 
 RUN apt-get update
-RUN apt-get install -y r-base r-base-dev gawk
+RUN apt-get install -y gawk
+
+# Install R 3.5
+RUN apt-get install -y software-properties-common apt-transport-https
+RUN apt-key adv --keyserver keys.gnupg.net --recv-key 'E19F5F87128899B192B1A2C2AD5F960A256A04AF' &> /dev/null
+RUN add-apt-repository 'deb https://cloud.r-project.org/bin/linux/debian stretch-cran35/' -y
+
+RUN apt-get update
+RUN apt-get install -y --allow-unauthenticated r-base r-base-dev
 
 COPY deps.R /usr/local
 
@@ -50,4 +58,8 @@ COPY conf.pl /soft
 COPY scripts /soft/scripts
 RUN ln -s /utils /soft/utils
 RUN ln -s /soft/hic-inspector.pl /usr/local/bin/hic-inspector.pl
+
+# Clean
+RUN apt-get clean
+RUN set -x; rm -rf /var/lib/apt/lists/*
 

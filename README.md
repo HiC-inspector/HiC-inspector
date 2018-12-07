@@ -28,8 +28,7 @@ This software is distributed under the terms of GPL 3.0
 
 You can grab the last code from:
 
-[https://github.com/HiC-inspector/HiC-inspector](https://github.com/HiC-
-inspector/HiC-inspector)
+[https://github.com/HiC-inspector/HiC-inspector](https://github.com/HiC-inspector/HiC-inspector)
 
 ## Citation
 
@@ -146,7 +145,9 @@ This uses [hg19](http://hgdownload.cse.ucsc.edu/downloads.html) processed with
 ### Design file
 
 Named <code>design.GM.hindIII.hg19</code>
-<pre>GM.hindIII SRR027956.lite.sra_1.fastq SRR027956.lite.sra_2.fastq hindIII.hg19.bed</pre>
+<pre>GM.hindIII SRR027956_1.fastq  SRR027956_2.fastq  hindIII.hg19.bed</pre>
+
+Take care to keep tabs instead of simple spaces.
 
 ### Chromosome files
 
@@ -161,3 +162,22 @@ We used [fetchChromSizes](http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/
 
 <pre>perl mypath/hic-inspector.pl -df design.GM.hindIII.hg19 -dd inputreadsdir -pd output/myproject.hindIII.hg19 -dfo fastq -u hg19 -b 1000000,10000000</pre>
 
+## Docker
+
+The easiest way to test this tool is by using Docker.
+
+* Create your own custom directories: input, output and utils 
+  * <code>mkdir -p /path/to/my/input</code>
+  * <code>mkdir -p /path/to/my/output</code>
+  * <code>mkdir -p /path/to/my/utils</code>
+* Download SRR027956 SRA example in input (you can also use Docker)
+  * <code>cd /path/to/my/input; docker run --rm -v "$(pwd)":/data -w /data inutano/sra-toolkit fasterq-dump SRR027956</code>
+* Prepare genome indices, chromosome sizes, etc. in utils directory. This must match assembly code used. We will use hg19 file provided above.
+  * <code>cd /path/to/my/utils; mkdir hg19; cd hg19; wget http://biocore.crg.cat/software/HiC-inspector/extra/hg19.tar.bz2; tar jxf hg19.tar.bz2</code>
+* We prepare a design file somewhere. Here we place it in /path/to/my/input directory
+  * <code>cd /path/to/my/input; wget http://biocore.crg.cat/software/HiC-inspector/extra/design.GM.hindIII.hg19</code>
+* Let's run the program 
+  * First we prepare a container: <code>docker run -d -v /path/to/my/input:/input -v /path/to/my/utils:/utils -v /path/to/my/output:/output --name myhic biocorecrg/hic-inspector tail -f /dev/null</code>
+  * Then we execute the command: <code>docker exec myhic perl hic-inspector.pl -df /input/design.GM.hindIII.hg19 -dd /input -pd /output/hindIII.hg19 -dfo fastq -u hg19 -b 1000000,10000000</code>
+* Once you don't need to run it for a while, you can stop the container:
+  * <code>docker stop myhic</code>

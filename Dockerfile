@@ -7,7 +7,7 @@ MAINTAINER Toni Hermoso Pulido <toni.hermoso@crg.eu>
 RUN cpanm Getopt::Long Pod::Usage Data::Dumper POSIX Benchmark Parallel::ForkManager
 
 RUN apt-get update
-RUN apt-get install -y gawk
+RUN apt-get install -y gawk libxml2-dev libcurl4-openssl-dev
 
 # Install R 3.5
 RUN apt-get install -y software-properties-common apt-transport-https

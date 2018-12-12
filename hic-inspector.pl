@@ -4,7 +4,7 @@ use warnings;
 
 =head1 NAME
 
-  hic-inspector.pl
+  hic-inspector.pl v1.0
 
 =head1 SYNOPSIS
 	
@@ -107,7 +107,7 @@ pod2usage(-verbose=>2) if $show_help;
 
 my %conf =  %::conf;
 my $debug = $conf{'debug'};
-my $email = $conf{'email'};
+#my $email = $conf{'email'};
 my $rdir = $conf{'rdir'};
 my $bowtiedir = $conf{'bowtiedir'};
 my $bedtoolsdir = $conf{'bedtoolsdir'};
@@ -185,10 +185,10 @@ my $pid = $$;
 my $t0 = Benchmark->new();
 
 # Send email, if email address is provided
-my $subject = "HIC-INSPECTOR running with process-id $pid [".strftime('%m-%d-%Y_%H:%M:%S', localtime)."]"; 
-$subject .= "- TEST MODE " if $test;
-print STDOUT "# $subject \n\n";
-&sendEmail ($email, 'hic-inspector', $subject, '') if ($email);
+#my $subject = "HIC-INSPECTOR running with process-id $pid [".strftime('%m-%d-%Y_%H:%M:%S', localtime)."]"; 
+#$subject .= "- TEST MODE " if $test;
+#print STDOUT "# $subject \n\n";
+#&sendEmail ($email, 'hic-inspector', $subject, '') if ($email);
 
 # Preparing directories for storing results
 print STDOUT "# Preparing directories for storing results \n\n";
@@ -489,10 +489,10 @@ my $t1 = Benchmark->new;
 my $td = timediff ($t1, $t0);
 
 ## Send mail, if email address is provided
-my $subject2 = "HIC-INSPECTOR with process-id $pid completed after ".timestr($td)." [".strftime('%m-%d-%Y_%H:%M:%S', localtime)."]";
-$subject2 .= "- TEST MODE " if $test;
-print STDOUT "# $subject2 \n\n";
-&sendEmail ($email, 'hic-inspector', $subject2, '') if ($email);
+#my $subject2 = "HIC-INSPECTOR with process-id $pid completed after ".timestr($td)." [".strftime('%m-%d-%Y_%H:%M:%S', localtime)."]";
+#$subject2 .= "- TEST MODE " if $test;
+#print STDOUT "# $subject2 \n\n";
+#&sendEmail ($email, 'hic-inspector', $subject2, '') if ($email);
 
 ###################
 ### subroutines ###

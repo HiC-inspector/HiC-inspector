@@ -5,7 +5,7 @@ MAINTAINER Toni Hermoso Pulido <toni.hermoso@crg.eu>
 
 # https://anaconda.org/bioconda/ucsc-fetchchromsizes
 # https://anaconda.org/bioconda/ucsc-oligomatch
-COPY kentUtils.yml /
+COPY kentUtils/kentUtils.yml /
 RUN conda env create -f /kentUtils.yml && conda clean -a
 ENV PATH /opt/conda/envs/kentUtils/bin:$PATH
 

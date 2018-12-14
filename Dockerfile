@@ -43,9 +43,6 @@ RUN cd /usr/local; rm bedtools-${BEDTOOLS_VERSION}.tar.gz
 # Let's put in PATH
 RUN cd /usr/local/bin; cp -prf ../bedtools2/bin/* . ; rm -rf /usr/local/bedtools2
 
-# Install fetchChromSizes
-RUN cd /usr/local/bin; curl --fail --silent --show-error --location --remote-name http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/fetchChromSizes; chmod a+rx fetchChromSizes
-
 # VOLUMES
 VOLUME /utils
 VOLUME /input

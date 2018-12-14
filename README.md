@@ -158,6 +158,16 @@ In utils directory you need to put a:
 
 We used [fetchChromSizes](http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/fetchChromSizes) script to create the chrom.sizes file for the UCSC database you are working with (e.g. hg19)
 
+* BED file with restriction enzyme processed genomes.
+
+You can use oligoMatch ([ref](https://groups.google.com/a/soe.ucsc.edu/forum/#!topic/genome/z7vaICqaY1g)), among other software, to process your genome with a restriction enzyme
+
+    oligoMatch hindIII.fa hg19.2bit hindIII.hg19.bed
+
+hindIII.fa file would look this way:
+
+    >hindIII
+    AAGCTT
 
 ### Example execution command
 
@@ -185,6 +195,8 @@ The easiest way to test and use this tool is by using Docker.
 * Once you don't need to run it for a while, you can stop the container:
   * <code>docker stop myhic</code>
   
-* Note: fetchChromSizes is also provided in this image for convenience.
-  * <code>docker exec myhic fetchChromSizes hg38 > /utils/hg38/chromsizes.hg38</code>
-  * You may want to edit resulting file (e. g. removing what is not a chromosome)
+* Note: fetchChromSizes and oligoMatch are also provided another Docker image for convenience.
+  * <code>docker run biocorecrg/hic-inspector-kentutils fetchChromSizes hg19 > chromsizes.hg19</code>
+  * <code>docker run -v /path/of/files:/share biocorecrg/hic-inspector-kentutils cd /share; oligoMatch hindIII.fa hg19.2bit hindIII.hg19.bed</code>
+  * You may want to edit resulting file (e. g. removing what is not a chromosome in chromosome files) and place them in /utils/hg19 (or equivalent assembly name)
+

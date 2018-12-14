@@ -1,0 +1,11 @@
+# You can use this file to create a conda environment for this pipeline:
+#   conda env create -f kentUtils.yml
+name: kentUtils
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - ucsc-fetchchromsizes=366
+  - ucsc-oligomatch=366
+  

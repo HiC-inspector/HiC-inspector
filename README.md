@@ -177,13 +177,13 @@ This is a command with the minimal number of parameters:
 
 ## Docker
 
-The easiest way to test and use this tool is by using Docker.
+The easiest way to test and use this tool is [by using Docker](https://hub.docker.com/r/biocorecrg/hic-inspector/).
 
 * Create your own custom directories: input, output and utils 
   * <code>mkdir -p /path/to/my/input</code>
   * <code>mkdir -p /path/to/my/output</code>
   * <code>mkdir -p /path/to/my/utils</code>
-* Download SRR027956 SRA example in input (you can also use a pre-existing Docker image)
+* Download SRR027956 SRA example in input (you can also use a [3rd party Docker image](https://hub.docker.com/r/inutano/sra-toolkit))
   * <code>cd /path/to/my/input; docker run --rm -v "$(pwd)":/data -w /data inutano/sra-toolkit fasterq-dump SRR027956</code>
 * Prepare genome indices, chromosome sizes, etc. in utils directory. This must match assembly code used. We will use hg19 file provided above.
   * <code>cd /path/to/my/utils; mkdir hg19; cd hg19; wget http://biocore.crg.cat/software/HiC-inspector/extra/hg19.tar.bz2; tar jxf hg19.tar.bz2</code>
@@ -195,7 +195,7 @@ The easiest way to test and use this tool is by using Docker.
 * Once you don't need to run it for a while, you can stop the container:
   * <code>docker stop myhic</code>
   
-* Note: fetchChromSizes and oligoMatch are also provided another Docker image for convenience.
+* Note: fetchChromSizes and oligoMatch are also provided [in another Docker image](https://hub.docker.com/r/biocorecrg/hic-inspector-kentutils) for convenience.
   * <code>docker run biocorecrg/hic-inspector-kentutils fetchChromSizes hg19 > chromsizes.hg19</code>
   * <code>docker run -v /path/of/files:/share biocorecrg/hic-inspector-kentutils cd /share; oligoMatch hindIII.fa hg19.2bit hindIII.hg19.bed</code>
   * You may want to edit resulting file (e. g. removing what is not a chromosome in chromosome files) and place them in /utils/hg19 (or equivalent assembly name)
